@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -634,7 +635,14 @@ class _TopNav extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.work_outline_rounded, color: _kAccent, size: 28),
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: SvgPicture.asset(
+                'assets/images/logo.svg',
+                fit: BoxFit.contain,
+              ),
+            ),
             const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
