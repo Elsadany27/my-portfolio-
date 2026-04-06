@@ -1,8 +1,13 @@
-# Builds Flutter web and deploys to GitHub Pages.
-# After the first successful run, open: https://elsadany27.github.io/my-portfolio-/
-# (Must match the repository name: my-portfolio-)
+# Builds Flutter web and pushes it to the `gh-pages` branch.
 #
-# Repo → Settings → Pages → Build and deployment → Source: GitHub Actions
+# After the workflow runs successfully, set the site source ONCE:
+#   Repo → Settings → Pages → Build and deployment
+#   → Source: Deploy from a branch
+#   → Branch: gh-pages  /  Folder: / (root)
+#   → Save
+#
+# Then open: https://elsadany27.github.io/my-portfolio-/
+# --base-href must match the repo name (my-portfolio-).
 
 name: Deploy to GitHub Pages
 
@@ -12,16 +17,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages-deploy
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,18 +45,9 @@ jobs:
             --base-href /my-portfolio-/ \
             --no-web-resources-cdn
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Publish to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: build/web
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          force_orphan: true
