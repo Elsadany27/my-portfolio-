@@ -45,6 +45,16 @@ jobs:
             --base-href /my-portfolio-/ \
             --no-web-resources-cdn
 
+      # GitHub Pages runs Jekyll by default; it breaks Flutter web (underscore paths, etc.)
+      # and can make the site show README instead of index.html.
+      - name: Disable Jekyll for GitHub Pages
+        run: touch build/web/.nojekyll
+
+      - name: Verify Flutter web output
+        run: |
+          test -f build/web/index.html || (echo "::error::build/web/index.html missing" && exit 1)
+          ls -la build/web/
+
       - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
