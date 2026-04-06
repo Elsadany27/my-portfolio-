@@ -39,11 +39,21 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      # Clean so CI never reuses a stale build/web from cache.
+      - name: Clean build
+        run: flutter clean
+
+      - name: Install dependencies (after clean)
+        run: flutter pub get
+
+      # --pwa-strategy=none stops the service worker from caching an old bundle
+      # (common reason the live site lags behind local).
       - name: Build web
         run: |
           flutter build web --release \
             --base-href /my-portfolio-/ \
-            --no-web-resources-cdn
+            --no-web-resources-cdn \
+            --pwa-strategy=none
 
       # GitHub Pages runs Jekyll by default; it breaks Flutter web (underscore paths, etc.)
       # and can make the site show README instead of index.html.
