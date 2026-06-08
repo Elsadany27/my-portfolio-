@@ -1162,6 +1162,16 @@ class _ProjectsColumn extends StatelessWidget {
             'https://apps.apple.com/ph/app/scholify-learn/id6756230905',
       ),
       const _ProjectBlock(
+        name: 'TopGrade',
+        bullets: [
+          'Learning platform tailored for Kuwait University engineering students.',
+          'Structured courses and exam-oriented educational content with a user-friendly experience.',
+          'Organized lessons, clear explanations, and curriculum-focused resources to boost study efficiency.',
+        ],
+        googlePlayUrl: '',
+        appStoreUrl: 'https://apps.apple.com/ph/app/topgradekw/id6773127911',
+      ),
+      const _ProjectBlock(
         name: 'Scholify – QR',
         bullets: [
           'Scan instructor QR to see courses; purchase in app.',
