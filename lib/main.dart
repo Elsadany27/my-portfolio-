@@ -343,6 +343,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final screenW = MediaQuery.sizeOf(context).width;
