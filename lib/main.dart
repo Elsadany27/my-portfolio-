@@ -1173,6 +1173,17 @@ class _ProjectsColumn extends StatelessWidget {
         appStoreUrl: 'https://apps.apple.com/ph/app/topgradekw/id6773127911',
       ),
       const _ProjectBlock(
+        name: 'Larnix',
+        bullets: [
+          'Comprehensive e-learning across multiple fields—structured courses with lectures, files, and on-demand videos.',
+          'Simple, user-friendly experience with in-app streaming and progress tracking per course.',
+          'Step-by-step content for students and learners building new skills or leveling up in any subject.',
+        ],
+        googlePlayUrl:
+            'https://play.google.com/store/apps/details?id=com.cyparta.larnix',
+        appStoreUrl: 'https://apps.apple.com/ph/app/larnix/id6757165295',
+      ),
+      const _ProjectBlock(
         name: 'Scholify – QR',
         bullets: [
           'Scan instructor QR to see courses; purchase in app.',
